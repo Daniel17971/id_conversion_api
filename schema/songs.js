@@ -6,6 +6,6 @@ const SongsSchema = new mongoose.Schema({
   spotify_id: String,
 });
 
-const SongsModel = mongoose.model("songs", SongsSchema);
-
+const SongsModel = mongoose.model("test_songs", SongsSchema);
+// first argument is document name
 module.exports = SongsModel;
