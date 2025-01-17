@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - PORT=8080
+      - MONGO_URI=mongodb://mongodb:27017/test_songs
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongo_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mongo_data:

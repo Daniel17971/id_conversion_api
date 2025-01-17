@@ -1,17 +1,15 @@
 FROM node:19.5.0-alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-
-WORKDIR /home/node/app
+WORKDIR /app
 
 COPY package*.json ./
 
-USER node
-
 RUN npm install
 
-COPY --chown=node:node . .
+COPY . .
+
+ENV PORT=8080, MONGO_URI="mongodb://localhost:27017/test_songs"
 
 EXPOSE 8080
 
-CMD ["node", "listen.js"]
+CMD ["npm", "start"]
