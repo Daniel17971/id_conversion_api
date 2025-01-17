@@ -5,6 +5,9 @@ const connection = mongoose
   .connect(`mongodb://localhost:27017/${db_name}`)
   .then(() => {
     console.log("connected to db");
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 module.exports = connection;
