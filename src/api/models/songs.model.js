@@ -14,6 +14,12 @@ exports.updateSong = (songName, reqBody) => {
   });
 };
 
+exports.updateSongBySpotifyId = (songId, reqBody) => {
+  return SongsModel.findOneAndUpdate({ spotify_id: `${songId}` }, reqBody, {
+    new: true,
+  });
+};
+
 exports.fetchSongByName = (songName) => {
   return SongsModel.findOne({ name: `${songName}` });
 };

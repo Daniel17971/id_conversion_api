@@ -60,3 +60,15 @@ exports.patchSongByName = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.patchSongBySpotifyId = async (req, res, next) => {
+  try {
+    const updatedSong = await updateSongBySpotifyId(
+      req.params.spotify_id,
+      req.body
+    );
+    res.send(updatedSong).status(200);
+  } catch (err) {
+    next(err);
+  }
+};
