@@ -5,6 +5,7 @@ const {
   updateSong,
   fetchSongByName,
   fetchSongById,
+  fetchSongBySpotifyId,
 } = require("../models/songs.model.js");
 
 exports.getAllSongs = async (req, res, next) => {
@@ -28,6 +29,15 @@ exports.getSongByName = async (req, res, next) => {
 exports.getSongById = async (req, res, next) => {
   try {
     const result = await fetchSongById(req.params.id);
+    res.send(result).status(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getSongBySpotifyId = async (req, res, next) => {
+  try {
+    const result = await fetchSongBySpotifyId(req.params.spotify_id);
     res.send(result).status(200);
   } catch (err) {
     next(err);
